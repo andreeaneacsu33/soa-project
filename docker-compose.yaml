@@ -1,0 +1,11 @@
+version: "3"
+services:
+  authentication-manager:
+    image: authentication-manager
+    ports:
+      - "8090:8090"
+    networks:
+      - app_net
+networks:
+  app_net:
+    driver: bridge
