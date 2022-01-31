@@ -1,19 +1,22 @@
 {
-  "name": "user",
+  "name": "login-ui",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.1",
     "@testing-library/react": "^12.1.2",
     "@testing-library/user-event": "^13.5.0",
-    "cors": "^2.8.5",
-    "express": "^4.17.2",
-    "express-jwt": "^6.1.0",
-    "jwks-rsa": "^2.0.5",
+    "grommet": "^2.20.1",
+    "grommet-icons": "^4.7.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-scripts": "5.0.0",
-    "web-vitals": "^2.1.4"
+    "styled-components": "^5.3.3",
+    "web-vitals": "^2.1.4",
+    "webpack": "^5.68.0",
+    "webpack-cli": "^4.9.1",
+    "webpack-dev-server": "^4.7.2",
+    "webpack-server": "^0.1.2"
   },
   "scripts": {
     "start": "react-scripts start",

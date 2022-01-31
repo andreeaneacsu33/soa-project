@@ -1,0 +1,17 @@
+{
+  "name": "authenticate",
+  "version": "1.0.0",
+  "description": "User authentication",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Hello World!\""
+  },
+  "author": "andreea",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.17.2",
+    "jsonwebtoken": "^8.5.1",
+    "jwks-rsa": "^2.0.5"
+  }
+}

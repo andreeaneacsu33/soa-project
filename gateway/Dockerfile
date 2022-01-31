@@ -1,11 +1,9 @@
 FROM node:12-alpine
 WORKDIR /usr/src/app
-COPY package*.json ./
 
+COPY . .
 RUN npm install
 
-COPY src .
-
-EXPOSE 8090
+EXPOSE 8092
 
 CMD ["node", "app.js"]

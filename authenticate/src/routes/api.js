@@ -1,6 +1,8 @@
 const router = require('express').Router();
 const fs = require('fs');
+const jwt = require('jsonwebtoken');
 var error = 'Internal server error';
+const accessTokenSecret = "myunaccessibletokensecret"
 
 router.route('/authenticate').post((req,res) => {
     console.log('Request received for path /authenticate');
@@ -34,7 +36,8 @@ router.route('/authenticate').post((req,res) => {
                 res.json({error});
             } else if(found_password === password){
                 console.log('Password is correct.');
-                res.json({username,password});
+                const accessToken = jwt.sign({ username, password }, accessTokenSecret, {expiresIn: '1800s'});
+                res.json({accessToken});
             } else{
                 console.log('Wrong password.');
                 error = 'Wrong password';

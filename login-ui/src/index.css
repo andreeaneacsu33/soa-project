@@ -1,0 +1,104 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+
+/*classes for the Login Form component*/
+.loginForm {
+  align-self: flex-end;
+  align-items: center;
+  max-width: 450px;
+  border-radius: 8px;
+  border: 1px solid #dadce0;
+  width: 450px;
+  height: 500px;
+  background-color: white;
+  position: absolute;
+  top: 50%;
+  /*left: 50%;*/
+  /*margin-right: -50%;*/
+  transform: translate(-5%, -50%);
+}
+
+.loginForm input, select, .affiliation input, .addAppointment .input {
+  font: 400 16px Roboto, RobotoDraft, Helvetica, Arial, sans-serif;
+  color: #202124;
+  line-height: 24px;
+}
+
+.affiliation .input {
+  color: #3e3f42;
+}
+
+.loginForm button, .logout button, .save button, .affiliation .saveButton button, .addAppointment .saveButton button {
+  font: 400 16px Roboto, RobotoDraft, Helvetica, Arial, sans-serif;
+  background-color: #c5cfff;
+  color: #676767;
+  float: left;
+}
+
+.loginForm .logo, .registerForm .logo {
+  margin-top: 20px;
+  width: 80px;
+  height: 80px;
+}
+
+.loginForm .submitButton, .logout button, .save button, .affiliation .saveButton button,.addAppointment .saveButton button {
+  width: 88px;
+  height: 36px;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.loginForm .buttonsBox {
+  width: 450px;
+  align-items: center;
+  font-family: 'Google Sans', arial, sans-serif;
+}
+
+.loginForm h1 {
+  font-family: roboto, 'Noto Sans Myanmar UI', arial, sans-serif;
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 32px;
+  text-indent: -1px;
+  color: #202124;
+}
+
+.loginForm span, .registerForm span, .affiliation .saveButton span {
+  font-family: 'Google Sans', arial, sans-serif;
+}
+
+.loginForm .createButton {
+  background-color: white;
+  border-color: white;
+  font-size: 17px;
+  text-align: center;
+  height: 36px;
+  color: rgb(134, 150, 255);
+}
+
+.loginForm .infoIcon, .registerForm .infoIcon, .affiliation .infoIcon, .review .infoIcon, .message .infoIcon, .addAppointment .infoIcon {
+  color: #d50000;
+  width: 16px;
+  height: 16px;
+  align-self: center;
+  fill: #d50000;
+  stroke: #d50000;
+  padding-right: 5px;
+  padding-left: 17px;
+}
+
+.loginForm .invalid, .registerForm .invalid, .registerForm .emailBox .invalid, .inputBox .invalid, .select .invalid {
+  border: 0.1em solid #d50000;
+}
