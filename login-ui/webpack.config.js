@@ -1,5 +1,6 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ModuleFederationPlugin = require('webpack/lib/container/ModuleFederationPlugin');
+
 module.exports = {
   mode: 'development',
   devServer: {
@@ -17,7 +18,7 @@ module.exports = {
         exclude: /node_modules/,
         // To Use babel Loader
         loader:
-          'file-loader',
+          'babel-loader',
         options: {
           presets: [
             '@babel/preset-env' /* to transfer any advansed ES to ES5 */,
@@ -28,23 +29,30 @@ module.exports = {
       {
         test: /\.css$/i,
         exclude: /node_modules/,
-        loader:
-          'css-loader',
-      }
+        use: [ 'style-loader', 'css-loader' ],
+      },
+      {
+        test: /\.(png|jpe?g|gif)$/i,
+        use: [
+          {
+            loader: 'file-loader',
+          },
+        ],
+      },
     ],
   },
   plugins: [
-    new ModuleFederationPlugin(
-      {
-        name: 'Main',
-        filename:
-          'remoteEntry.js',
-        remotes: {
-          Books:
-            'Books@http://localhost:8096/remoteEntry.js',
-        },
-      }
-    ),
+    // new ModuleFederationPlugin(
+    //   {
+    //     name: 'Main',
+    //     filename:
+    //       'remoteEntry.js',
+    //     remotes: {
+    //       Books:
+    //         'Books@http://localhost:8096/remoteEntry.js',
+    //     },
+    //   }
+    // ),
     new HtmlWebpackPlugin({
       template:
         './public/index.html',

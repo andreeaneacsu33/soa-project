@@ -20,14 +20,15 @@ code {
   max-width: 450px;
   border-radius: 8px;
   border: 1px solid #dadce0;
+  padding-top: 30px;
   width: 450px;
-  height: 500px;
+  height: 370px;
   background-color: white;
   position: absolute;
   top: 50%;
-  /*left: 50%;*/
-  /*margin-right: -50%;*/
-  transform: translate(-5%, -50%);
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
 }
 
 .loginForm input, select, .affiliation input, .addAppointment .input {

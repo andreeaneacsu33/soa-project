@@ -16,6 +16,10 @@ class Login extends Component {
         reveal: false,
     };
 
+    loginSuccess = this.props.loginSuccess;
+    setUser = this.props.setUser;
+    setToken = this.props.setToken;
+
     onChange = e => {
         this.setState({[e.target.name]: e.target.value})
     };
@@ -33,13 +37,14 @@ class Login extends Component {
     };
 
     login(user) {
+        console.log('user');
         const  { username, password } = user;
 
         if (username === '' || password === ''){
             this.setState({message: 'Invalid data.'});
         } else {
             // perform fetch for login
-            const url_api = 'http://localhost:8092/urest/v1/access/login';
+            const url_api = 'http://localhost:8092/urest/v1/login';
             console.log(`Sending request: ${url_api}`);
 
             fetch(url_api,{
@@ -57,6 +62,7 @@ class Login extends Component {
                     if(typeof api_error == 'undefined'){
                         console.log("Password is correct.");
                         this.setUser(username);
+                        this.setToken(data.token)
                         this.loginSuccess();
                     } else {
                         console.log(api_error);
@@ -77,14 +83,11 @@ class Login extends Component {
         const {reveal} = this.state;
         return (
             <Grommet theme={deepMerge(grommet, customFormFieldTheme)}>
-                    (<Box><Image className='alignMiddle' src={background}
-                            style={{opacity: "0.5", width: '100%', height: "100%"}}/><Box width='100%' height='100%' alignContent='end'>
+                    <Box><Box width='100%' height='100%' alignContent='end'>
                         <Box className='loginForm'>
-                            <Image className='logo' src={logo}/>
                             <Form onSubmit={this.onSubmit}>
                                 <Box align='center'>
                                     <h1>Connect</h1>
-                                    <span>Access my account</span>
                                 </Box>
                                 <Box align='center' margin='medium'>
                                     <Box
@@ -97,7 +100,7 @@ class Login extends Component {
                                         border
                                     >
                                         <TextInput
-                                            name='email'
+                                            name='username'
                                             id='email'
                                             plain
                                             placeholder='Username'
@@ -142,7 +145,7 @@ class Login extends Component {
                                 </Box>
                             </Form>
                         </Box>
-                    </Box></Box>)}
+            </Box></Box>
             </Grommet>
         )
     }

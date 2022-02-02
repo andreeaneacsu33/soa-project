@@ -14,7 +14,6 @@
     "styled-components": "^5.3.3",
     "web-vitals": "^2.1.4",
     "webpack": "^5.68.0",
-    "webpack-cli": "^4.9.1",
     "webpack-dev-server": "^4.7.2",
     "webpack-server": "^0.1.2"
   },
@@ -41,5 +40,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "webpack-cli": "^4.9.2"
   }
 }

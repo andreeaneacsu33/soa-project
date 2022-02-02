@@ -42,7 +42,7 @@ router.route('/login').post((req,res)=>{
                     console.log(token);
                     console.log(`Logged in users: ${loggedInUsers}`);
                     // socketIO.emit('numberOfUsers',loggedInUsers.length);
-                    res.json({username});
+                    res.json({username, token});
                 } else {
                     console.log(api_error);
                     error = data.error;
