@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const apiRoute = require('./api');
+const bookRoute = require('./api');
 
-router.use('/urest/v1', apiRoute);
+router.use('/book', bookRoute);
 module.exports = router;

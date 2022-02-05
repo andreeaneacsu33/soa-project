@@ -6,12 +6,29 @@ services:
       - "8090:8090"
     networks:
       - app_net
+  books-api:
+    image: books-api
+    ports:
+      - "8096:8096"
+    networks:
+      - app_net
   api-gateway:
     image: api-gateway
     ports:
       - "8092:8092"
     networks:
       - app_net
+    depends_on:
+      - authentication-manager
+      - books-api
+  books-ui:
+    image: books-ui
+    ports:
+      - "8098:8098"
+    networks:
+      - app_net
+    depends_on:
+      - api-gateway
   login-ui:
     image: login-ui
     stdin_open: true
@@ -19,6 +36,8 @@ services:
       - "8094:8094"
     networks:
       - app_net
+    depends_on:
+      - books-ui
 networks:
   app_net:
     driver: bridge

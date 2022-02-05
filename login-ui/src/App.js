@@ -1,16 +1,17 @@
 import React, {Component} from "react";
 import Login from "./Login";
-import {Box, Grommet} from "grommet";
+import {Box, Button, Grommet} from "grommet";
 import {grommet} from "grommet/themes";
 import "./index.css"
 
 class App extends Component {
 
   state = {
-    isLoggedIn: false
+    isLoggedIn: false,
+    username: '',
+    token: ''
   };
-  username = '';
-  token = '';
+
 
   loginSuccess = () => {
     console.log('login success');
@@ -19,37 +20,40 @@ class App extends Component {
   }
 
   setCurrentUsername = (username) => {
-    this.username = username;
-    console.log(`username set to: ${this.username}`);
+    this.setState({username});
+    console.log(`username set to: ${username}`);
     console.log(this.state);
   }
 
   setToken = (token) => {
-    this.token = token;
-    console.log(`token set to: ${this.token}`);
+    this.setState({token})
+    console.log(`token set to: ${token}`);
     console.log(this.state);
   }
 
-  logout() {
+  logout = () => {
+    const {token, username} = this.state;
     console.log('logout');
     const url_api = 'http://localhost:8092/urest/v1/logout';
     console.log(`sending request: ${url_api}`);
+
+    console.log(token);
 
     fetch(url_api,{
       method:'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': this.token
+        'Authorization': `Bearer ${token}`
       },
       body: JSON.stringify({
-        "username": this.username
+        "username": username
       })
     }).then(response => response.json())
         .then(data => {
           const api_error = data.error;
           if(typeof api_error == 'undefined'){
             console.log("Logout success.");
-            this.username = '';
+            this.setState({username: ''});
             this.setState({ isLoggedIn: false });
           } else {
             console.log(api_error);

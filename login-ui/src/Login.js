@@ -66,11 +66,9 @@ class Login extends Component {
                         this.loginSuccess();
                     } else {
                         console.log(api_error);
-                        alert(api_error);
                     }
                 }).catch((err) => {
                 console.log(`Error API call: ${err}`);
-                alert(error);
             });
         }
     }

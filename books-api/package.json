@@ -1,0 +1,16 @@
+{
+  "name": "books-api",
+  "version": "1.0.0",
+  "description": "Api for books",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Hello World!\""
+  },
+  "author": "andreea",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.17.2",
+    "write-file-p": "^1.0.8"
+  }
+}

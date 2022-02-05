@@ -1,10 +1,9 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ModuleFederationPlugin = require('webpack/lib/container/ModuleFederationPlugin');
-
 module.exports = {
   mode: 'development',
   devServer: {
-    port: 8094,
+    port: 8098,
   },
   module: {
     rules: [
@@ -31,25 +30,17 @@ module.exports = {
         exclude: /node_modules/,
         use: [ 'style-loader', 'css-loader' ],
       },
-      {
-        test: /\.(png|jpe?g|gif)$/i,
-        use: [
-          {
-            loader: 'file-loader',
-          },
-        ],
-      },
     ],
   },
   plugins: [
     new ModuleFederationPlugin(
       {
-        name: 'Main',
+        name: 'Books',
         filename:
           'remote.js',
-        remotes: {
-          Books:
-            'Books@http://localhost:8098/remote.js',
+        exposes: {
+          './Books':
+            './src/Books',
         },
       }
     ),
