@@ -1,38 +1,22 @@
-import React, {Component} from "react";
+import React, {lazy, useState} from "react";
 import Login from "./Login";
 import {Box, Button, Grommet} from "grommet";
 import {grommet} from "grommet/themes";
 import "./index.css"
 
-class App extends Component {
+const BooksComponent = lazy(
+    () => import('Books/BooksComponent')
+);
 
-  state = {
-    isLoggedIn: false,
-    username: '',
-    token: ''
-  };
+let component;
 
+function App() {
 
-  loginSuccess = () => {
-    console.log('login success');
-    this.setState({ isLoggedIn: true });
-    console.log(this.state);
-  }
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [username, setUsername] = useState('');
+  const [token, setToken] = useState('');
 
-  setCurrentUsername = (username) => {
-    this.setState({username});
-    console.log(`username set to: ${username}`);
-    console.log(this.state);
-  }
-
-  setToken = (token) => {
-    this.setState({token})
-    console.log(`token set to: ${token}`);
-    console.log(this.state);
-  }
-
-  logout = () => {
-    const {token, username} = this.state;
+  const logout = () => {
     console.log('logout');
     const url_api = 'http://localhost:8092/urest/v1/logout';
     console.log(`sending request: ${url_api}`);
@@ -53,8 +37,8 @@ class App extends Component {
           const api_error = data.error;
           if(typeof api_error == 'undefined'){
             console.log("Logout success.");
-            this.setState({username: ''});
-            this.setState({ isLoggedIn: false });
+            setUsername({username: ''});
+            setIsLoggedIn({ isLoggedIn: false });
           } else {
             console.log(api_error);
             alert(api_error);
@@ -65,26 +49,30 @@ class App extends Component {
     });
   }
 
-  render() {
-    const {isLoggedIn} = this.state;
-    let component;
     if (isLoggedIn) {
-      component = (<Box style={{alignItems:"center", marginTop: "23px"}} className='logout'>
-        <Button onClick={this.logout}>Logout</Button>
-      </Box>)
+      component = (
+          <Box>
+            <React.Suspense fallback="Loading Books">
+              <BooksComponent/>
+            </React.Suspense>
+            <Box style={{alignItems:"center", marginTop: "23px"}} className='logout'>
+              <Button onClick={() => logout()}>Logout</Button>
+            </Box>
+          </Box>
+      )
     } else {
       component = (<Login
-          loginSuccess={this.loginSuccess}
-          setUser={this.setCurrentUsername}
-          setToken={this.setToken}
+          loginSuccess={() => setIsLoggedIn({ isLoggedIn: true })}
+          setUser={(usr) => setUsername({username: usr})}
+          setToken={(tkn) => setToken({token: tkn})}
       />)
     }
+
     return (
         <Grommet full theme={grommet}>
           {component}
         </Grommet>
     )
-  }
 }
 
 export default App;

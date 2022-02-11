@@ -1,8 +1,7 @@
 import React, {Component} from 'react';
-import {Box, Grommet, TextInput} from 'grommet';
-import {grommet} from "grommet/themes";
+import {Box, TextInput} from 'grommet';
 
-class Books extends Component {
+class BooksComponent extends Component {
 
     onChange = e => {
         this.setState({[e.target.name]: e.target.value})
@@ -10,9 +9,7 @@ class Books extends Component {
 
     render() {
         return(
-            <Grommet full theme={grommet}>
-
-            <Box style={{paddingTop: '2px'}}>
+            <Box className='booksForm' style={{paddingTop: '2px'}}>
                 <Box
                     className='emailBox'
                     direction="row"
@@ -48,9 +45,8 @@ class Books extends Component {
                     />
                 </Box>
             </Box>
-            </Grommet>
     )
     }
 }
 
-export default Books;
+export default BooksComponent;

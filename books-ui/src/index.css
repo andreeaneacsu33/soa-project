@@ -12,7 +12,21 @@ code {
     monospace;
 }
 
-.emailBox {
+.booksForm {
+  max-width: 450px;
+  border-radius: 8px;
+  border: 1px solid #dadce0;
+  width: 450px;
+  height: auto;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
+  align-items: center;
+}
+
+.booksForm .emailBox {
   width: 376px;
   height: 40px;
   padding: 7px 11px;

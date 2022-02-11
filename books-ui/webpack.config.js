@@ -34,16 +34,26 @@ module.exports = {
   },
   plugins: [
     new ModuleFederationPlugin(
-      {
-        name: 'Books',
-        filename:
-          'remote.js',
-        exposes: {
-          './Books':
-            './src/Books',
-        },
-      }
-    ),
+        {
+            name: 'Books',
+            filename:
+                'remote.js',
+            exposes: {
+                './BooksComponent':
+                    './src/BooksComponent',
+            },
+            shared: [{
+                react: {
+                    singleton: true,
+                    requiredVersion: "^17.0.2",
+                },
+                "react-dom": {
+                    singleton: true,
+                    requiredVersion: "^17.0.2",
+                },
+            }
+            ],
+        }),
     new HtmlWebpackPlugin({
       template:
         './public/index.html',

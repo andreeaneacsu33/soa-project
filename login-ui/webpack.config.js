@@ -51,6 +51,17 @@ module.exports = {
           Books:
             'Books@http://localhost:8098/remote.js',
         },
+        shared: [{
+          react: {
+            singleton: true,
+            requiredVersion: "^17.0.2",
+          },
+          "react-dom": {
+            singleton: true,
+            requiredVersion: "^17.0.2",
+          },
+        }
+        ]
       }
     ),
     new HtmlWebpackPlugin({

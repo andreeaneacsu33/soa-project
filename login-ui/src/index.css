@@ -35,6 +35,7 @@ code {
   font: 400 16px Roboto, RobotoDraft, Helvetica, Arial, sans-serif;
   color: #202124;
   line-height: 24px;
+  align-self: center;
 }
 
 .affiliation .input {

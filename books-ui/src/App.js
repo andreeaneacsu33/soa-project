@@ -1,12 +1,13 @@
+import React from 'react';
 import './App.css';
-import Books from "./Books";
-import {grommet} from "grommet/themes";
-import {Grommet} from "grommet";
+import BooksComponent from "./BooksComponent";
+import {grommet, Grommet} from "grommet";
+import "./index.css"
 
 function App() {
   return (
       <Grommet full theme={grommet}>
-          <Books/>
+        <BooksComponent/>
       </Grommet>
   );
 }
