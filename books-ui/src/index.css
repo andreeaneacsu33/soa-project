@@ -18,12 +18,8 @@ code {
   border: 1px solid #dadce0;
   width: 450px;
   height: auto;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  margin-right: -50%;
-  transform: translate(-50%, -50%);
-  align-items: center;
+  padding: 20px;
+  background-color: #F8F9FA;
 }
 
 .booksForm .emailBox {
@@ -33,4 +29,33 @@ code {
   font: 400 16px Roboto, RobotoDraft, Helvetica, Arial, sans-serif;
   color: #202124;
   align-items: center;
+}
+
+.add button {
+  font: 400 16px Roboto, RobotoDraft, Helvetica, Arial, sans-serif;
+  background-color: #c5cfff;
+  color: #676767;
+  float: left;
+  width: 88px;
+  height: 36px;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.wishlist {
+  display: flex;
+  flex-wrap: wrap;
+  height: 400px;
+  align-content: space-between;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
+  align-items: center;
+}
+
+.booksForm {
+  height: 300px;
+  width: 450px;
 }

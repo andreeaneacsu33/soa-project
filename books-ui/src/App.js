@@ -7,7 +7,10 @@ import "./index.css"
 function App() {
   return (
       <Grommet full theme={grommet}>
-        <BooksComponent/>
+        <BooksComponent
+            token='aa'
+            username='usr0'
+        />
       </Grommet>
   );
 }

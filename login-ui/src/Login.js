@@ -3,8 +3,6 @@ import {Box, Button, Form, grommet, Grommet, Image, TextInput} from 'grommet';
 import {CircleInformation, Hide, View} from 'grommet-icons';
 import {deepMerge} from "grommet/utils";
 import './index.css';
-import background from './utils/images/background.jpg';
-import logo from './utils/images/logo.png';
 
 const error = 'Internal server error';
 
