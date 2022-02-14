@@ -90,7 +90,7 @@ code {
   color: rgb(134, 150, 255);
 }
 
-.loginForm .infoIcon, .registerForm .infoIcon, .affiliation .infoIcon, .review .infoIcon, .message .infoIcon, .addAppointment .infoIcon {
+.loginForm .infoIcon, .wishlist .infoIcon {
   color: #d50000;
   width: 16px;
   height: 16px;

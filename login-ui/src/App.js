@@ -73,17 +73,20 @@ class App extends Component {
         const {isLoggedIn, token, username} = this.state;
         let component;
         if (isLoggedIn) {
-            component = (<Box className="app" style={{width: "750px", height: "auto"}}>
+            component = (
+                <Box>
+                <Box className="app" style={{width: "750px", height: "auto"}}>
                 <React.Suspense fallback="Loading Books">
                     <BooksComponent
                         token={token}
                         username={username}
                     />
                 </React.Suspense>
-                <Box style={{alignItems:"center", marginTop: "23px"}} className='logout'>
-                    <Button onClick={this.logout}>Logout</Button>
-                </Box>
-            </Box>)
+            </Box>
+                    <Box style={{alignItems:"center", marginTop: "23px"}} className='logout'>
+                        <Button onClick={this.logout}>Logout</Button>
+                    </Box>
+                </Box>)
         } else {
             component = (<Login
                 loginSuccess={this.loginSuccess}

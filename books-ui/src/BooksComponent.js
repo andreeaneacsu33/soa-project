@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {Box, Button, TextInput, List} from 'grommet';
 import {CircleInformation} from "grommet-icons";
+import emailjs from 'emailjs-com';
 
 class BooksComponent extends Component {
 
@@ -9,6 +10,8 @@ class BooksComponent extends Component {
         this.state = {
             title: '',
             author: '',
+            email: '',
+            name: '',
             message: null,
             books: [],
         };
@@ -46,6 +49,14 @@ class BooksComponent extends Component {
         this.getBooks();
     }
 
+    componentDidUpdate(prevState) {
+        const {books} = this.state;
+        if (books && prevState.books && books.length !== prevState.books.length) {
+            this.setState({title: ''});
+            this.setState({author: ''});
+        }
+    }
+
     onAdd = e => {
         e.preventDefault()
         const {title, author} = this.state;
@@ -73,6 +84,8 @@ class BooksComponent extends Component {
                     const api_error = data.error;
                     if(typeof api_error == 'undefined'){
                         console.log("Book successfully added.");
+                        this.setState({title: ''})
+                        this.setState({author: ''})
                         this.getBooks();
                     } else {
                         alert(api_error);
@@ -84,12 +97,36 @@ class BooksComponent extends Component {
         }
     }
 
+    onSend = e => {
+        const {email, name, books} = this.state;
+
+        if (email === ''){
+            alert('Invalid data.');
+        } else {
+            let books_copy = books.map((elem) => `${elem.title} - ${elem.author}\n`);
+
+            emailjs.send('service_9579k0q', 'template_18nr5rm', {
+                'subject': 'Your Wishlist',
+                'name': name,
+                'message': books_copy,
+                'email': email
+            }, 'user_Jv5SXGt5Uuncr8doPeEVw')
+                .then(() => {
+                    console.log('Email sent.');
+                    alert('Email successfully sent!')
+                }).catch((err) => {
+                console.log(`Error sending mail: ${err}`);
+                alert('Error encountered while sending email.')
+            });
+        }
+    }
+
     render() {
         const {books} = this.state;
         console.log(books)
         return(
             <Box className='wishlist' style={{flexDirection: 'row', display: 'flex'}}>
-                <Box className='booksForm' style={{padding: '20px'}}>
+                <Box className='booksForm' style={{paddingTop: '2px'}}>
                     <h2 style={{alignSelf: "center"}}>My Wishlist</h2>
                     <List
                         style={{alignSelf: "center"}}
@@ -148,6 +185,58 @@ class BooksComponent extends Component {
                         <Button style={{alignSelf: 'flex-end'}} onClick={this.onAdd}>Add</Button>
                     </Box>
                 </Box>
+                <Box style={{padding: "20px"}}/>
+                <Box>
+                    <Box className='booksForm' style={{paddingTop: '2px'}}>
+                        <h2 style={{alignSelf: "center"}}>Send wishlist</h2>
+                        <Box
+                            style={{backgroundColor: "white"}}
+                            className='emailBox'
+                            direction="row"
+                            margin="small"
+                            round="xsmall"
+                            border
+                        >
+                            <TextInput
+                                className='input'
+                                name='email'
+                                id='email'
+                                plain
+                                placeholder='Email'
+                                type='text'
+                                onChange={this.onChange}
+                            />
+                        </Box>
+                        <Box
+                            style={{backgroundColor: "white"}}
+                            className='emailBox'
+                            direction="row"
+                            margin="small"
+                            round="xsmall"
+                            border
+                        >
+                            <TextInput
+                                className='input'
+                                name='name'
+                                id='name'
+                                plain
+                                placeholder='Name'
+                                type='text'
+                                onChange={this.onChange}
+                            />
+                        </Box>
+                        {this.state.message && (
+                            <Box style={{alignSelf: 'start', flexDirection: 'row', display: 'flex'}}>
+                                <CircleInformation className='infoIcon'/>
+                                <span
+                                    style={{color: '#d50000', fontSize: '13px'}}>{this.state.message}</span>
+                            </Box>
+                        )}
+                        <Box className='add' style={{padding: "20px"}}>
+                            <Button style={{alignSelf: 'flex-end'}} onClick={this.onSend}>Send</Button>
+                        </Box>
+                </Box>
+            </Box>
             </Box>
     )
     }
