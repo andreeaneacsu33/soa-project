@@ -5,6 +5,11 @@ The purpose of this application is for a user to create a wishlist of books. He 
 For the backend, there is a microservice for the management of the authentication, a microservice that acts as a gateway and redirects the call from the client to the corresponding microservice and a microservice for handling the books requests. \
 On the frontend, there are two microservices, one that handles the login part and one that handles the books component.
 
+To start the application, you have to:
+
+- run **docker build <image_name> -t .** in each folder (you have to check the image name in the **docker-compose.yaml** file)
+- run **docker-compose up** to start the application
+- run **docker-compose down -v** to delete all the images and containers
 ****
 
 ### Integrations
@@ -13,6 +18,9 @@ The application uses a third-party service for sending emails called **emailjs**
 
 ### Microservices
 The application uses Docker for creating the images and deploying the containers.
+![Docker images](utils/images.png)
+![Docker containers](utils/containers.png)
+
 ****
 
 ### Design Patterns
